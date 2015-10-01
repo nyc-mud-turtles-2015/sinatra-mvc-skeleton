@@ -15,11 +15,14 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>My awesome site</title>
 </head>
 <body>
-<div id="content">
-  <%= yield %>
-</div>
+  <% if is_logged_in? %>
+    <p>I want you to be happy, remember your username is: <%= current_user.username %></p>
+  <% end %>
+  <div id="content">
+    <%= yield %>
+  </div>
 </body>
 </html>

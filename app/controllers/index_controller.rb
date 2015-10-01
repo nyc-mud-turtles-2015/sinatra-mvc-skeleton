@@ -29,3 +29,40 @@ end
 post '/form_result' do
   "Hello #{params[:name]} from #{params[:town]}"
 end
+
+get '/favorite_animal' do
+  erb :'favorite_animal/form'
+end
+
+post "/favorite_animal" do
+  session[:favorite_name] = params[:favorite_name]
+  redirect "/"
+end
+
+
+get '/signup' do
+  erb :signup
+end
+
+post '/signup' do
+  user = User.new(params[:user])
+  if user.save
+    redirect "/"  # go to your happy place
+  else
+    "drop dead"
+  end
+end
+
+get '/login' do
+  erb :login
+end
+
+post '/login' do
+  user = User.find_by(username: params[:user][:username])
+  if user.password == params[:user][:password]
+    session[:user_id] = user.id
+    "awesome sauce"
+  else
+    "go away bad hacker Vladimir Putin"
+  end
+end
