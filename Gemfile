@@ -10,6 +10,7 @@ gem 'sinatra-contrib'
 gem 'activesupport'
 gem 'activerecord'
 gem 'bcrypt-ruby'
+gem 'pry'
 
 gem 'rake'
 
