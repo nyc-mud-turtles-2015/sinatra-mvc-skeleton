@@ -16,6 +16,7 @@ gem 'rake'
 gem 'shotgun'
 gem 'faker'
 gem 'bcrypt'
+gem 'rack-flash3'
 
 group :test do
   gem 'database_cleaner', '~> 1.4.1'

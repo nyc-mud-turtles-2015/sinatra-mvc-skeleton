@@ -4,7 +4,7 @@
   <h2> <%= @post.name %> </h2>
 <ul>
   <% @comments.each do |comment| %>
-   <li><a href="/comment/<%= comment.id %>"><%= comment.content %></li>
+   <li><a href="/users/<%= comment.id %>"><%= comment.content %></li>
   <% end %>
 </ul>
 </div>

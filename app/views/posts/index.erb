@@ -1,4 +1,8 @@
 <h1>Welcome to Hacker News<h1>
+<p><a href="/login">login</a></p>
+<p><a href="/logout">logout</a></p>
+<p><a href="/users/new">signup</a></p>
+<p><a href="/users/new">create a new post</a></p>
 <ul>
   <% @posts.each do |post| %>
    <li><a href="/posts/<%= post.id %>"><%= post.name %></a></li>

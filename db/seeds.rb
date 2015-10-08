@@ -1,6 +1,6 @@
 require 'faker'
 
-User.create!(username: 'Hobbes', password_hash: 'cat')
+user = User.create(username: 'Hobbes', password: 'cat')
 
 %w(watches weather disease neuroscience humans).each do |category|
   Post.create!(name: category)
