@@ -1,0 +1,18 @@
+<b>Login</b>
+<form method="post" action="/login">
+  <table border="0">
+    <tr><td>username:</td><td><input type="text" name="username" size="20" autocorrect="off" autocapitalize="off"></td></tr>
+    <tr><td>password:</td><td><input type="password" name="password" size="20"></td></tr>
+  </table>
+  <input type="submit" value="login"></form>
+  <b>Create Account</b>
+<form method="post" action="/register">
+  <input type="hidden" name="register" value="t">
+  <table border="0">
+    <tr><td>username:</td><td>
+      <input type="text" name="username" size="20" autocorrect="off" autocapitalize="off"></td></tr>
+    <tr><td>password:</td><td>
+    <input type="password" name="password" size="20"></td></tr>
+  </table>
+  <input type="submit" value="create account">
+</form>
