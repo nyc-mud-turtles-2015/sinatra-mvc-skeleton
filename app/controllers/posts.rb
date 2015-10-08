@@ -17,7 +17,6 @@ post '/post/new' do
 end
 
 post '/post/:id/comment' do
-  binding.pry
   @comment = Comment.new(params[:comment])
   @post = Post.find(params[:id])
   @post.comments << @comment

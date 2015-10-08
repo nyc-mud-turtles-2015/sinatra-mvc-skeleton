@@ -1,7 +1,35 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true , length: {minimum: 6, maximum: 12}, uniqueness: true
-  validates :password, presence: false, length: {minimum: 8, maximum: 20}
+  include BCrypt
+  validates :username, presence: true, uniqueness: true
+  validates :password_hash, presence: true
 
-  has_many :posts#, through: "join_table"
-  has_many :comments#, through: "join_table"
+  has_many :comments
+  has_many :posts
+  def login(user, password)
+    user.password == password
+  end
+
+  def self.login(args = {})
+    user = User.find_by(username: args[:username])
+    user.password == password
+  end
+
+  def self.register(args = {})
+    binding.pry
+    user = User.find_by(username: args[:username])
+    if user.nil?
+      user = User.new(username: args[:username], password_hash: args[:password])
+      user.password = args[:password]
+      return user.save
+    end
+  end
+
+  def password
+    @password ||= Password.new(password_hash)
+  end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
 end
