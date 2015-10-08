@@ -8,8 +8,10 @@ get '/post/new' do
 end
 
 post '/post/new' do
+  @user = User.find_by(username: session[:username])
   @post = Post.new(params[:post])
-  if @post.save
+  @user.posts << @post
+  if @user.save
     redirect ('/')
   else
     @post.errors.messages

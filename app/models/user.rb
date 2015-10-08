@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   has_many :comments
   has_many :posts
+
+  # has_many :votes
+
   def login(user, password)
     user.password == password
   end
