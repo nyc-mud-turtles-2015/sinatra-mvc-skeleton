@@ -18,6 +18,11 @@
   <title></title>
 </head>
 <body>
+<% if session[:username] %>
+  <a href="/logout">Logout</a>
+<% else %>
+  <a href="/login">Login</a>
+<% end %>
 <div id="content">
   <%= yield %>
 </div>
