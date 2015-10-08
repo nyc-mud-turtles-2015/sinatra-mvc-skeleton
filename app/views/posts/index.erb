@@ -1,0 +1,6 @@
+<h1>Welcome to Hacker News<h1>
+<ul>
+  <% @posts.each do |post| %>
+   <li><a href="/posts/<%= post.id %>"><%= post.name %></a></li>
+  <% end %>
+</ul>

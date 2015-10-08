@@ -1,0 +1,10 @@
+<div>
+  <h1><a href= "/posts">Hacker News</h1>
+
+  <h2> <%= @post.name %> </h2>
+<ul>
+  <% @comments.each do |comment| %>
+   <li><a href="/comment/<%= comment.id %>"><%= comment.content %></li>
+  <% end %>
+</ul>
+</div>

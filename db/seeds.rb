@@ -1,11 +1,13 @@
 require 'faker'
 
-%w(watches weather disease neuroscience cats).each do |name|
-  Post.create!(name: name)
+User.create!(username: 'Hobbes', password_hash: 'cat')
+
+%w(watches weather disease neuroscience humans).each do |category|
+  Post.create!(name: category)
 end
 
-Post.all.each do |tag|
+Post.all.each do |post|
   5.times do
-    comment = Comment.create!(title:Faker::Company.catch_phrase, content: Faker::Lorem.paragraphs.join("\n\n"))
+    comment = Comment.create!(content: Faker::Lorem.paragraphs.join("\n\n"))
   end
 end
