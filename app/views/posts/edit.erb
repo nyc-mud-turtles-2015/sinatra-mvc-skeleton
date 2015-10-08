@@ -1,0 +1,6 @@
+<div class="edit_post_form">
+<form action="/posts/<%= @post.id %>" method="PUT">
+    <input type="text" name="post[name]" value="<%= @post.name %>">
+    <textarea name="comment[content]"></textarea>
+    <input type="submit">
+  </form>

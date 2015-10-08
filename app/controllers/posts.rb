@@ -4,23 +4,45 @@ get '/posts' do
 end
 
 get '/posts/new' do
-
+  erb :'posts/new'
 end
 
 get '/posts/:id' do
     @comments = Comment.all
     @post = Post.find(params[:id])
+    id = Post.find_by(params[:user_id])
+    @user = User.find(params[:id])
   erb :'posts/show'
 end
 
 post '/posts' do
   user = User.find_by(params[:id])
-  if @entry.save
-    redirect "/entries/#{@entry.id}"
+  if @post.save
+    redirect "/posts/#{@post.id}"
   else
-    @errors = @entry.errors.full_messages
-    erb :'entries/new'
+    erb :'posts/new'
   end
+end
+
+post 'posts/:id/comments' do
+
+  end
+
+
+get "/posts/:id/edit" do
+  @post = Post.find(params[:id])
+  erb :'posts/edit'
+end
+
+put '/posts/:id' do
+  @post= Post.find(params[:id])
+  @post.update_attributes(params[:post])
+  erb :'posts/show'
+end
+delete '/posts/:id' do
+  post = Post.find(id)
+  post.destroy
+  redirect('/')
 end
 
 
