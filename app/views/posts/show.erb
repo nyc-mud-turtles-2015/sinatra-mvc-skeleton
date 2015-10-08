@@ -3,6 +3,7 @@
 <p> <%= @post.created_at %> </p>
 
 <form method="post" action="/post/<%= @post.id %>/comment">
+  <input type="hidden" name="comment[post_id]" value="<%=@post.id%>">
   <textarea name="comment[body]" rows="6" cols="60"></textarea>
   <input type="submit" value="add comment">
 </form>

@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   end
 
   def self.register(args = {})
-    binding.pry
     user = User.find_by(username: args[:username])
     if user.nil?
       user = User.new(username: args[:username], password_hash: args[:password])

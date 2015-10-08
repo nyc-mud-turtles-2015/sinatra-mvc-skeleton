@@ -17,11 +17,12 @@ post '/post/new' do
 end
 
 post '/post/:id/comment' do
-  @comment = Comment.new(params[:comment])
   @post = Post.find(params[:id])
-  @post.comments << @comment
-  if @post.save
-    redirect ('/post/:id')
+  @comment = Comment.new(params[:comment])
+  @user = User.find(@post.user_id)
+  @user.comments << @comment
+  if @user.save
+    redirect ("/post/#{@post.id}")
   else
     @post.errors.messages
   end
