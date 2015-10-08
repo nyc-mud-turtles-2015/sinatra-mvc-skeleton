@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration
             message: "your url should include http prefix and proper domain suffix"}
       t.string :base_url
       t.string :body
+      t.integer :user_id, null:false
       t.timestamps null: false
     end
   end
