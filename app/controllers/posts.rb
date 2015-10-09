@@ -31,11 +31,9 @@ post '/post/:id/comment' do
 end
 
 get '/post/click/:id' do
-  binding.pry
   @post = Post.find(params[:id])
   @user_id = User.find_by(username: session[:username]).id
   @vote = Vote.find_by(user_id: @user_id)
-  binding.pry
   if @vote.nil? && request.xhr?
     @vote = Vote.new(user_id: @user_id, voteable_id: @post.id, voteable_type: :post)
     @post.votes << @vote
