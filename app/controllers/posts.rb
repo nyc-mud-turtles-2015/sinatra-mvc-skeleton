@@ -1,3 +1,7 @@
+get '/session-viewer' do
+  session.inspect
+end
+
 get '/posts' do
   @posts = Post.all
   erb :'posts/index'

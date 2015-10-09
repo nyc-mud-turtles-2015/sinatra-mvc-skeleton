@@ -8,12 +8,12 @@ get '/users/new' do
 end
 
 post '/users' do
-  @user = User.new(params[:user])
-  @user.password = (params[:password])
-  if @user.save
-    session[:user_id] = @user.id
+  user = User.new(params[:user])
+  if user.save
+    session[:user_id] = user.id
     redirect '/users'
   else
+    @errors = ["Please enter username and password"]
     erb :'/users/new'
   end
 end
