@@ -21,7 +21,7 @@ end
 post '/post/:id/comment' do
   @post = Post.find(params[:id])
   @comment = Comment.new(params[:comment])
-  @user = User.find(@post.user_id)
+  @user = User.find_by(username: session[:username])
   @user.comments << @comment
   if @user.save
     redirect ("/post/#{@post.id}")
@@ -31,9 +31,11 @@ post '/post/:id/comment' do
 end
 
 get '/post/click/:id' do
+  binding.pry
   @post = Post.find(params[:id])
-  @user_id = @post.user_id
+  @user_id = User.find_by(username: session[:username]).id
   @vote = Vote.find_by(user_id: @user_id)
+  binding.pry
   if @vote.nil? && request.xhr?
     @vote = Vote.new(user_id: @user_id, voteable_id: @post.id, voteable_type: :post)
     @post.votes << @vote
@@ -41,6 +43,7 @@ get '/post/click/:id' do
   else
     @vote.destroy
     status 498
+    return false
   end
 end
 
