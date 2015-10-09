@@ -30,6 +30,20 @@ post '/post/:id/comment' do
   end
 end
 
+get '/post/click/:id' do
+  @post = Post.find(params[:id])
+  @user_id = @post.user_id
+  @vote = Vote.find_by(user_id: @user_id)
+  if @vote.nil? && request.xhr?
+    @vote = Vote.new(user_id: @user_id, voteable_id: @post.id, voteable_type: :post)
+    @post.votes << @vote
+    status 202
+  else
+    @vote.destroy
+    status 498
+  end
+end
+
 get '/post/:id' do
   @post = Post.find(params[:id])
   erb :'/posts/show'
